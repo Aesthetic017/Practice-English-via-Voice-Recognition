@@ -302,7 +302,7 @@ function fetchProgress(username, password) {
 // Function to translate the sentence
 async function translateSentence(sentence) {
   const selectedLang = document.getElementById("language-select").value;
-  const apiKey = ""; // Replace with your actual API key
+  const apiKey = "AIzaSyB0SJCcfQKTwcCQdEhyeDbUZ7ubT4JfWCY"; // Replace with your actual API key
 
   const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
   const requestBody = {
