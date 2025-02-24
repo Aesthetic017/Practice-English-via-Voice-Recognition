@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Character encoding and viewport settings -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Page title -->
+        <title>Speech Recognition Game</title>
+        <!-- External stylesheets -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <!-- jQuery for dynamic interaction -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <!-- Inline CSS for quick custom styles -->
+        <style>
+            .hidden2 {
+                display: none;
+            }
+            .main {
+                display: flex;
+                width: 100%;
+            }
+            .child1 {
+                width: 100%;
+            }
+            .child2 { 
+                width: 100%;
+                /* Uncomment this if margin is needed */
+                /* margin-top: 70px; */
+            }
+        </style>
+
+        <!-- Header section with navigation links and title -->
+        <header class="text-box">
+            <span class="text-primary">Practice English via</span>
+            <span class="text-sub">Voice Recognition</span>
+       
+        <!-- Hidden navigation menu (shown later in the game) -->
+        <nav id="nav" class="hidden">
+            <ul>
+                <li>
+                    <!-- Home button -->
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li>
+                    <!-- Info button -->
+                    <a href="#" id="info-btn">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </li>
+                <li>
+                    <!-- View progress button -->
+                    <a onclick="ShowUser()">
+                        View All User's Progress
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content section centered on the page -->
+    <center>
+        <div class="main">
+            <div class="child1">
+
+                <!-- Login page -->
+                <div class="container" id="login-page">
+                    <!-- Left column: Text introduction -->
+                    <div class="left-column">
+                        <h2 style="height: 60px;">SPEAK. LEARN. IMPROVE.</h2>
+                        <p style="height: 60px;">
+                            Remember, language learning is about consistent effort, not flawless execution. Every time you speak, you're getting better.
+                        </p>
+                        <p>Practice your pronunciation and English speaking skills with our interactive speech recognition game. Ready to begin?</p>
+                    </div>
+
+                    <!-- Right column: Login form -->
+                    <div class="right-column">
+                        <h2 style="height: 60px;">Welcome!</h2>
+                        <!-- Form with POST method to 'login.php' -->
+                        <form id="login-form" action="login.php" method="POST">
+                            <!-- Username input -->
+                            <input type="text" name="username" id="username" placeholder="Enter your username" required>
+                            <!-- Password input -->
+                            <input type="text" name="password" id="password" placeholder="Enter your Password" required>
+                            <!-- Start game button -->
+                            <button type="submit" onclick="StartGame2()">Start Game</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Difficulty selection page (initially hidden) -->
+                <div id="difficulty-page" class="page hidden">
+                    <h1>Select Difficulty</h1>
+                    <!-- Buttons for selecting difficulty level -->
+                    <button class="difficulty-btn" data-level="easy">Easy</button>
+                    <button class="difficulty-btn" data-level="medium">Medium</button>
+                    <button class="difficulty-btn" data-level="hard">Hard</button>
+                </div>
+
+                <!-- Game page (initially hidden) -->
+                <div id="game-page" class="page hidden">
+                    <!-- Word to practice -->
+                    <div id="word-box">
+                        <h1 id="word"></h1>
+                    </div>
+                    <!-- Message box for feedback (initially hidden) -->
+                    <div id="message-box" class="hidden">
+                        <p id="message"></p>
+                    </div>
+                    <!-- Congratulatory and sad images (initially hidden) -->
+                    <div>
+                        <img id="congratulatory" src="https://gifsec.com/wp-content/uploads/2022/09/congrats-gif-5.gif" class="hidden2" alt="">
+                    </div>
+                    <div>
+                        <img id="sad" src="https://i.pinimg.com/originals/d0/27/6a/d0276ad64c6fdaf24cca226ec526c473.gif" class="hidden2" alt="">
+                    </div>
+                    <!-- Username display box -->
+                    <div id="Username-box">
+                        <span>Player Name:</span>
+                        <span id="UserNameVal"></span>
+                    </div>
+                    <!-- Control buttons for speaking and listening -->
+                    <div id="control-box">
+                        <button onclick="speakWord(currentWord)">
+                            <i class="fas fa-headphones"></i>
+                        </button>
+                        <button onclick="listenForWord()">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <!-- Progress display -->
+                    <div id="progress-box">
+                        <span>Progress:</span>
+                        <span id="progress"></span>
+                    </div>
+                    <!-- Language selection dropdown for translation -->
+                    <div id="language-select-box" class="custom-select-container">
+                        <label for="language-select">Translate to:</label>
+                        <select id="language-select" class="custom-select" style="margin-top: 10px;">
+                            <option value="" selected disabled>Select Language</option>
+                            <option value="en">English</option>
+                            <option value="fr">French</option>
+                            <option value="zh-TW">Chinese</option>
+                            <option value="es">Spanish</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                            <option value="de">German</option>
+                            <option value="it">Italian</option>
+                            <option value="pt">Portuguese</option>
+                            <option value="ru">Russian</option>
+                            <option value="hi">Hindi</option>
+                            <option value="tr">Turkish</option>
+                            <option value="nl">Dutch</option>
+                            <option value="pl">Polish</option>
+                            <option value="sv">Swedish</option>
+                        </select>
+                    </div>
+                    <!-- Translation display -->
+                    <div id="translation-box">
+                        <p id="translation"></p>
+                    </div>
+                </div>
+
+                <!-- User list section (initially hidden) -->
+                <div class="child2 hidden" id="UserList">
+                    <div class="containers" style="display: block;">
+                        <h3>Let's COMPETE with:</h3><br><br>
+                        <!-- Display user list dynamically here -->
+                        <div id="user-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <!-- Modal for app instructions -->
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>How Our App Works</h2>
+            <div class="modal-body">
+                <!-- Listen and speak buttons -->
+                <div class="button-container">
+                    <button class="action-btn listen-btn">
+                        <i class="fas fa-headphones"></i>
+                        Listen
+                    </button>
+                    <button class="action-btn speak-btn">
+                        <i class="fas fa-microphone"></i>
+                        Speak
+                    </button>
+                </div>
+                <!-- App usage instructions -->
+                <ul class="app-instructions">
+                    <li><i class="fas fa-check-circle"></i> The user can see a word or sentence from the selected difficulty level.</li>
+                    <li><i class="fas fa-check-circle"></i> The user clicks "Mic" icon to practice speaking the displayed word or sentence.</li>
+                    <li><i class="fas fa-check-circle"></i> The user clicks "Headphone" icon to listen to the displayed word or sentence.</li>
+                    <li><i class="fas fa-check-circle"></i> Our app listens and evaluates the user's pronunciation.</li>
+                    <li><i class="fas fa-check-circle"></i> Users can review their performance as progress points and view other users' progress.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript file -->
+    <script src="script.js" defer></script>
+    <!-- Inline JavaScript for game interaction -->
+    <script>
+        function StartGame2() {
+            // Hide login page and show navigation menu
+            $("#login-page").hide();
+            $("#nav").show();
+        }
+
+        function ShowUser() {
+            // Show user list and fetch user data
+            $("#UserList").show();
+            fetchAndDisplayUsers();
+        }
+    </script>
+</body>
+</html>

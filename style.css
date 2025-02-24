@@ -1,0 +1,795 @@
+/* Importing fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Ribeye+Marrow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+body{
+  background: black }
+/*Header*/
+/* Animated Header Styles */
+.text-box {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  color: white;
+  font-family: "Ribeye Marrow", serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  background: #000000cd;
+  padding: 10px;
+ 
+}
+
+.text-primary, .text-sub {
+  display: block;
+  text-align: center;
+}
+
+.text-primary {
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  font-size: 1.5em;
+  animation: moveLeft 1.5s ease-in;
+}
+
+.text-sub {
+  margin-top: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 2.5em;
+  animation: moveRight 1.5s ease-in;
+  text-shadow: 0 0 5px rgb(230, 243, 93);
+}
+
+@keyframes moveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Navigation Styling */
+nav {
+  position: absolute; /* Makes the navbar float inside the header */
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: #000000;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 0.5px solid rgb(252, 171, 40);
+  background-color:rgb(186 81 12 / 99%);
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+nav ul li a:hover {
+  background-color: #7b2607;
+  border:2px solid white;
+  border-radius: 15px;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with transparency */
+}
+
+.modal-content {
+  background-color: #a4a2a2;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 700px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* Shadow for depth */
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(0.95);
+}
+
+.modal-content.show {
+  transform: scale(1);
+}
+
+.close-btn {
+  color: #000000;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Button Container Styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.action-btn i {
+  margin-right: 8px;
+}
+
+.action-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+.listen-btn {
+  background-color: #28a745;
+}
+
+.listen-btn:hover {
+  background-color: #218838;
+}
+
+/* Instructions List Styling */
+.app-instructions {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.app-instructions li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  transition: box-shadow 0.3s;
+}
+
+.app-instructions li:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.app-instructions li i {
+  color: #28a745;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+/* Container to style around select */
+.custom-select-container {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  margin: 20px 0;
+}
+
+/* Basic styles for the select element */
+.custom-select {
+  appearance: none;
+  /* Remove default styling */
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f8f8f8;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* Add a custom arrow (for better compatibility) */
+.custom-select::after {
+  content: "\25BC";
+  /* Unicode for down arrow */
+  position: absolute;
+  top: 14px;
+  right: 15px;
+  pointer-events: none;
+}
+
+/* Change styles when hovering or focusing */
+.custom-select:hover,
+.custom-select:focus {
+  border-color: #777;
+  background-color: #fff;
+}
+
+/* Option styling */
+/* .custom-select option {
+  padding: 10px;
+  background-color: #fff;
+} */
+
+/* Add focus style */
+.custom-select:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  nav ul li {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+}
+
+#difficulty-page  {
+  margin-top: 30px;
+  text-align: center;
+  background: rgba(240, 215, 152, 0.862);
+  padding: 30px;
+  margin-top: 12px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  width: 80% !important;
+}
+.page{
+  margin-top: 30px;
+  text-align: center;
+  background: rgba(247, 211, 113, 0.855);
+  padding: 30px;
+  margin-top: 12px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  width: 80% !important;
+}
+
+.hidden {
+  display: none;
+}
+#difficulty-page h1{
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #252323;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Vollkorn", serif;
+}
+
+input[type="text"] {
+  padding: 15px;
+  width: 80%;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+#difficulty-page button {
+  background-color: #9c510b;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #7e6602 4px 4px 0 0;
+    color: #ebd6b7;
+    cursor: pointer;
+    display: inline-block;
+    margin: 25px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+#difficulty-page button:hover {
+  background-color: #704323;
+  text-align: center;
+  box-shadow: black;
+}
+#difficulty-page button {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  #difficulty-page button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+
+#message-box {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#message.success {
+  color: green;
+}
+
+#message.failure {
+  color: red;
+}
+
+#progress-box {
+  margin-top: 20px;
+  font-size: 1.5rem;
+}
+
+.page {
+  display: none;
+}
+
+.page:not(.hidden) {
+  display: block;
+}
+
+#control-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+#control-box button{
+  margin: 15px;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  border-radius: 45px;
+  border: none;
+  background-color: #212d54;
+  border-color: #40e3d3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+#control-box button:hover {
+  background-color: #180336;
+}
+
+#word-box {
+  margin-top: 20px;
+  background-color: #00000012;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+#translation-box {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+#progress-box {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.success {
+  font-size: 1.5rem;
+  color: rgb(5, 102, 5);
+  font-weight: bold;
+}
+
+.failure {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+/*Header*/
+.title {
+  color: rgb(0, 0, 0);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5%;
+  font-size: 1.5rem;
+  border-radius: 15px;
+  transition: color 0.3s ease,
+    /* Smooth transition for color */
+    font-size 0.3s ease;
+  /* Smooth transition for font size */
+}
+
+/* Hover effect to header */
+
+/* Container Styles */
+.container {
+  margin-top: 30px;
+  display: flex;
+  /* flex-wrap: wrap; */
+  height: 400px;
+  justify-content: center; /* Updated from 'centre' */
+  align-items: center;
+  background: linear-gradient(45deg, rgba(193, 190, 24, 0.871), rgba(231, 185, 46, 0.814), rgba(187, 134, 21, 0.89));
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite;
+  padding: 20px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(177, 108, 4, 0.833);
+  max-width: 80%;
+  /* width: 150%;
+  margin-left: 110px; */
+}
+
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*container style of user list */
+.containers {
+  margin-top: 80px;
+  display: flex;
+  /* flex-wrap: wrap; */
+  height: 600px;
+  justify-content: center; /* Updated from 'centre' */
+  align-items: center;
+  background: linear-gradient(45deg, rgba(147, 145, 147, 0.871), rgba(150, 147, 147, 0.732), rgba(107, 104, 107, 0.822));
+  background-size: 400% 400%;
+  animation: gradientBackground 10s ease infinite;
+  padding: 20px;
+  border: 3px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(200, 201, 202, 0.833);
+  max-width: 80%;
+  /* width: 150%;
+  margin-left: 110px; */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.user-list {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+#UserList h3 {
+  margin-top: 0;
+  background-color: rgba(207, 170, 207, 0.375);
+  border: 2px solid black;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 2rem;
+}
+.left-column,
+.right-column {
+  flex: 1;
+  /* Allows both columns to take equal width */
+  margin: 15px;
+  /* Margin between columns */
+  min-width: 300px;
+  /* Minimum width for responsiveness */
+}
+
+.left-column h2,
+.right-column h2 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  text-align: center;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.left-column h2 {
+  font-family: "Acme", sans-serif;}
+
+.left-column p {
+  color: #011d26;
+  line-height: 1.3;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.right-column input {
+  padding: 10px;
+  width: 90%; /* Full width input */
+  margin-bottom: 30px;
+  border: none; /* Remove default border */
+  color: rgb(42, 2, 81);
+  font-weight: bold;
+  background-color: #f8f8f86d;
+  border-bottom: 3px solid #000; /* Only bottom border */
+  border-radius: 15px;
+  outline: none; /* Remove the default focus outline */
+  font-size: 18px;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease; /* Smooth transition for border color and transform */
+}
+/* Hover and focus effect for the input field */
+.right-column input:focus, 
+.right-column input:hover {
+    border-bottom: 3px solid #2b0238; /* Change bottom border color on hover/focus */
+    transform: translateY(-5px); /* Move text upwards */
+}
+
+/* Label styles for input fields */
+.right-column label {
+    position: relative;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #333;
+}
+
+.right-column input:focus + label, 
+.right-column input:not(:placeholder-shown) + label {
+    transform: translateY(-20px); /* Move label upwards */
+    color: #07587d; /* Change color when input is focused or not empty */
+    font-size: 14px;
+}
+
+.right-column button {
+  padding: 10px ;
+  background-color: #785206; /* Button background color */
+  color: #fff; /* Button text color */
+  border: none; /* Removes border */
+  border-radius: 15px;
+  cursor: pointer; /* Changes cursor on hover */
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  align-items: center;
+  text-align: center;
+  width: 95%;
+  justify-content: center;
+  margin-left: -3px;
+}
+
+.right-column button:hover {
+  background-color: #682605;
+} 
+
+/* Centering the Username-box */
+#Username-box {
+  font-weight: bold;
+  color: rgb(2, 23, 44);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  margin: 20px auto; /* To center in the middle of the container */
+  max-width: 300px;
+  text-align: center; /* Centering the text inside */
+}
+
+/* Styling the translation box */
+#translation-box {
+  padding: 10px;
+  background-color: #e5e9ece9;
+  border: 1px solid #4a2203;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  color: #0d0d0d;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Styling the translation text */
+#translation-box p {
+  font-size: 16px;
+  border-radius: 15px;
+  color: #1a1a1a;
+  text-align: center; /* Centering the translated text */
+}
+
+/* Adding a hover effect */
+#translation-box:hover {
+  background-color: #d9f0ff;
+  border-color: #01182d;
+}
+
+/* Styling the entire container */
+#language-select-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Styling the label */
+#language-select-box label {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #000000;
+  margin-bottom: 5px;
+  display: block;
+ 
+}
+
+/* Styling the select dropdown */
+#language-select {
+  padding: 10px;
+  width: 350px;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #211f1f;
+  border-radius: 12px;
+  margin-left: -47px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  appearance: none; /* Hide the default arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  max-width: 300px;
+}
+
+/* Hover effect for the select dropdown */
+#language-select:hover {
+  background-color: #e9f5ff;
+  border-color: #582402;
+}
+
+/* Change the dropdown arrow color when active */
+#language-select:focus {
+  outline: none;
+  border-color: #9c3a01;
+}
+
+/* Customizing the caret (arrow) */
+#language-select:after {
+  content: '▾';
+  position: absolute;
+  right: 10px;
+  font-size: 12px;
+  color: #3a024e;
+}
+
+/* Styling the select options */
+#language-select option {
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+}
+#progress-box {
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  margin: 20px auto; /* To center in the middle of the container */
+  max-width: 300px;
+  text-align: center; /* Centering the text inside */
+}
